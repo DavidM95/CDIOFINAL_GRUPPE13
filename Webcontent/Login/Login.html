@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="/jquery-3.1.1.js"></script>
+    <script src="/jquery.serialize-object.js"></script>
+    <script src="/Login/Login.js"></script>
+
+</head>
+<body>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+<div id="id01" class="modal">
+
+    <div class="modal-content animate">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <form id="loginform">
+            <label for="brugerId">BrugerId: </label>
+            <input type="number" id="brugerId" name="brugerId">
+
+            <label for="brugerPassword">Password: </label>
+            <input type="text" id="brugerPassword" name="brugerPassword">
+            <button onclick="userLogin()">Gem ændringer</button>
+
+            <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+                Cancel
+            </button>
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

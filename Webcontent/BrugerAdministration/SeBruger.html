@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bruger Administration</title>
+    <link rel="stylesheet" href="../Css.Main.css">
+    <script src="/jquery-3.1.1.js"></script>
+    <script src="/jquery.serialize-object.js"></script>
+    <script src="/JS.Main.js"></script>
+    <script src="/BrugerAdministration/Brugeradministration.js"></script>
+
+
+
+</head>
+<body>
+
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+<div class="navbar">
+    <ul class="navbar-container">
+        <li class="nav-item"><a href="/index.html" class="left-underline nav-button" data-scroll>Home</a></li>
+        <li class="nav-item"><a href="/Login/Login.html" class="left-underline nav-button" data-scroll>Login</a></li>
+        <li class="nav-item active"><a href="/BrugerAdministration/BrugerAdministration.html" class="left-underline nav-button" data-scroll>Bruger Administration</a></li>
+
+    </ul>
+</div>
+
+<h1>Button Group</h1>
+
+<div class="btn-group">
+    <a href='OpretBruger.html'><button>Opret Bruger</button></a>
+    <a href='RetBruger.html'><button>Ret Bruger</button></a>
+    <a href='./SeBruger.html'><button>Se Bruger</button></a>
+    <a href='SletBruger.html'><button>Slet Bruger</button></a>
+</div>
+<div class="indhold">
+    <h2>Indtast ID</h2>
+    <label for="brugerId"></label>
+    <input type ="number" id="brugerId" name="brugerId">
+    <button onclick="GET();">Se Bruger</button>
+    <form id = sebruger>
+
+    </form>
+
+
+    <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+</div>
+<footer>
+</footer>
+</body>
+</html>
