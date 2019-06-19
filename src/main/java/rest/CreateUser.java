@@ -16,18 +16,25 @@ import java.sql.SQLException;
 
 public class CreateUser {
 
-//    @GET
-//    public Response seBruger(BrugerDTO brugerDTO) {
-////        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-////        brugeradministrationCTRL.LoginChecker(brugerDTO);
-//        System.out.println(brugerDTO.getBrugerId());
-//        System.out.println(brugerDTO.getBrugerNavn());
-//        System.out.println(brugerDTO.getBrugerIni());
-//        System.out.println(brugerDTO.getBrugerPassword());
-//        System.out.println(brugerDTO.getBrugerRole());
-//
-//        return Response.ok("hej").build();
-//    }
+
+    @GET
+    public Response seAlleBrugere(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
+        brugeradministrationCTRL.seAlleBrugere(brugerDTO.getBrugerId(),brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(),brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
+
+
+        return Response.ok("hej").build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
+        brugeradministrationCTRL.retBruger(brugerDTO.getBrugerId(),brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(),brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
+
+
+        return Response.ok("hej").build();
+    }
 
 
 
@@ -36,14 +43,10 @@ public class CreateUser {
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
         brugeradministrationCTRL.opretBruger(brugerDTO.getBrugerId(),brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(),brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
 
-//        System.out.println(brugerDTO.getBrugerId());
-//        System.out.println(brugerDTO.getBrugerNavn());
-//        System.out.println(brugerDTO.getBrugerIni());
-//        System.out.println(brugerDTO.getBrugerPassword());
-//        System.out.println(brugerDTO.getBrugerRole());
 
-        return Response.ok("OK" + brugerDTO.getBrugerNavn() + "velkommen").build();
+        return Response.ok("Velkommen" + brugerDTO.getBrugerNavn() + "Du har nu oprettet en bruger").build();
 
     }
 }
+
 

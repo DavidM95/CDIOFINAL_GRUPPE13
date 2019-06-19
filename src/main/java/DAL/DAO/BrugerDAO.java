@@ -53,7 +53,7 @@ public class BrugerDAO implements IBrugerDAO {
 
     @Override
     public IBrugerDTO getBrugerId(int userId) throws IDALException.DALException {
-        return null;
+        return null ;
     }
 
     @Override
@@ -97,11 +97,31 @@ public class BrugerDAO implements IBrugerDAO {
         }
         return null;
     }
+    public IBrugerDTO getAlleBrugere() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
 
-    @Override
-    public List<IBrugerDTO> getBrugerList() throws IDALException.DALException {
+            PreparedStatement statement = connection.prepareStatement("SELECT*FROM Bruger;");
+
+            statement.setInt(1, bruger);
+
+            ResultSet resultSet = statement.executeQuery();
+
+
+            BrugerDTO brugerDTO = null;
+
+
+            IBrugerDTO users = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("ini"), resultSet.getString("password"), resultSet.getString("rolle"));
+
+           while(resultSet.next()){
+                brugerDTO = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("brugerIni"), rolleliste, resultSet.getString("password"));
+            return (BrugerDTO) users;
         return null;
     }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     public void retBruger(IBrugerDTO brugerDTO) throws SQLException {

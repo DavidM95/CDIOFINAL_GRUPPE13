@@ -40,32 +40,30 @@
 
     <form>
         ID:<br>
-        <input type="text" name="ID">
+        <input type="text" name="ID" id="getbrugerID">
         <br>
 
         <button onclick="sebruger()"> Se Bruger</button>
-        <tbody id="ingredienttablebody">
 
-        </tbody>
     </form>
 <div id = retbruger>
     <button onclick=""> Ret Bruger</button>
     <form id="retbrugerform">
         <h2>Ret Bruger</h2>
         ID:<br>
-        <input type="text" name="ID" value="">
+        <input type="text" name="ID" id="brugerid" value="" readonly>
         <br>
         Brugernavn:<br>
-        <input type="text" name="Brugernavn" value="John">
+        <input type="text" name="Brugernavn" id="brugernavn" value="">
         <br>
         Initialer:<br>
-        <input type="text" name="Ini" value="JH">
+        <input type="text" name="Ini" id="brugerini" value="">
         <br>
         Password:<br>
-        <input type="text" name="Password" value="1234">
+        <input type="text" name="Password" id="brugerpassword" value="">
         <br>
         Rolle:<br>
-        <input type="text" name="Rolle" value="Laborant">
+        <input type="text" name="Rolle" id="brugerrolle" value="">
         <br><br>
         <button onclick="retBruger();"> Ret Bruger</button>
     </form>
