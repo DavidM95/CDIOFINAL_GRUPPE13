@@ -48,7 +48,7 @@
     </form>
 <div id = retbruger>
     <button onclick=""> Ret Bruger</button>
-    <form id="retbrugerform">
+    <form id="retbrugerform" methode="GET" action="rest/createUser/seallebrugere">
         <h2>Ret Bruger</h2>
         ID:<br>
         <input type="text" name="ID" id="brugerid" value="" readonly>
@@ -65,7 +65,7 @@
         Rolle:<br>
         <input type="text" name="Rolle" id="brugerrolle" value="">
         <br><br>
-        <button onclick="retBruger();"> Ret Bruger</button>
+        <input type = "submit" value="visbrugere">
     </form>
 </div>
     <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>

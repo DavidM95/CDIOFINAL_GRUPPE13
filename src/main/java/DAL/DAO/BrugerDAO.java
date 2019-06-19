@@ -3,10 +3,10 @@ package DAL.DAO;
 import DAL.Connect;
 import DAL.DTO.BrugerDTO;
 import DAL.DTO.IBrugerDTO;
-import DAL.IConnect;
 import DAL.IDALException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BrugerDAO implements IBrugerDAO {
@@ -16,16 +16,14 @@ public class BrugerDAO implements IBrugerDAO {
     private final String userName = "user=s160601";
     private final String pass = "password=t08HP36o2H0HGQzFhf4qo";
 
+    @Override
     public void opretBruger(IBrugerDTO brugerDTO) throws SQLException {
 
-
-        try  {
-
+        try {
             Connection connection = Connect.getInstance().createConnection();
 //                    Class.forName("com.mysql.cj.jdbc.Driver");
 //            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Bruger VALUES (?,?,?,?,?);");
-//            PreparedStatement roller = connection.prepareStatement("INSERT INTO Roller(brugerId, rolle) VALUES (?,?);");
 
             statement.setInt(1, brugerDTO.getBrugerId());
             statement.setString(2, brugerDTO.getBrugerNavn());
@@ -33,17 +31,6 @@ public class BrugerDAO implements IBrugerDAO {
             statement.setString(4, brugerDTO.getBrugerPassword());
             statement.setString(5, brugerDTO.getBrugerRole());
             statement.execute();
-//            roller.setInt(1,brugerDTO.getBrugerId());
-
-            // Ved ikke om den bare overskriver den allerede gemte rolle. Skal lige testes.
-//            for(int i = 0; i < brugerDTO.getRolleliste().size(); i++){
-//                roller.setString(2, brugerDTO.getRoller(i));
-//                roller.execute();
-//            }
-
-
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +40,7 @@ public class BrugerDAO implements IBrugerDAO {
 
     @Override
     public IBrugerDTO getBrugerId(int userId) throws IDALException.DALException {
-        return null ;
+        return null;
     }
 
     @Override
@@ -62,74 +49,61 @@ public class BrugerDAO implements IBrugerDAO {
         return dao;
     }
 
-    public BrugerDTO getBruger(int brugerId) throws SQLException {
+    @Override
+    public IBrugerDTO getBruger(int brugerId) throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
+            Connection connection = Connect.getInstance().createConnection();
 
-                PreparedStatement statement = connection.prepareStatement("SELECT*FROM Bruger WHERE BrugerID = ?;");
-//            PreparedStatement roller = connection.prepareStatement("SELECT*FROM Roller WHERE BrugerID = ?;");
+            PreparedStatement statement = connection.prepareStatement("SELECT*FROM Bruger WHERE BrugerID = ?;");
 
-                statement.setInt(1, brugerId);
+            statement.setInt(1, brugerId);
 
-//            roller.setInt(1,ID);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
 
-//            ResultSet resultSetRoller = statement.executeQuery();
-                ResultSet resultSet = statement.executeQuery();
+            IBrugerDTO user = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("ini"), resultSet.getString("password"), resultSet.getString("rolle"));
 
-//            ArrayList rolleliste = new ArrayList();
-//            int index = 0;
-//            while (resultSetRoller.next()){
-//                rolleliste.add(index,resultSetRoller.getString(index+1));
-//                index++;
-//            }
-
-                BrugerDTO brugerDTO = null;
-
-
-                IBrugerDTO user = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("ini"), resultSet.getString("password"), resultSet.getString("rolle"));
-
-//            while(resultSet.next()){
-//                brugerDTO = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("brugerIni"), rolleliste, resultSet.getString("password"));
-                return (BrugerDTO) user;
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    public IBrugerDTO getAlleBrugere() throws SQLException {
+
+    @Override
+    public List<BrugerDTO> getBrugerListe() throws SQLException {
+
+        List<BrugerDTO> brugere = new ArrayList<>();
+        BrugerDTO bruger;
+        BrugerDTO brugerDTO = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
+            Connection connection = Connect.getInstance().createConnection();
 
             PreparedStatement statement = connection.prepareStatement("SELECT*FROM Bruger;");
 
-            statement.setInt(1, bruger);
+            ResultSet res = statement.executeQuery();
 
-            ResultSet resultSet = statement.executeQuery();
+            while (res.next()) {
+                bruger = new BrugerDTO();
+                bruger.setBrugerId(res.getInt("brugerID"));
+                bruger.setBrugerNavn(res.getString("brugerNavn"));
+                bruger.setBrugerIni(res.getString("ini"));
+                bruger.setBrugerPassword(res.getString("password"));
+                bruger.setBrugerRole(res.getString("rolle"));
 
-
-            BrugerDTO brugerDTO = null;
-
-
-            IBrugerDTO users = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("ini"), resultSet.getString("password"), resultSet.getString("rolle"));
-
-           while(resultSet.next()){
-                brugerDTO = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("brugerIni"), rolleliste, resultSet.getString("password"));
-            return (BrugerDTO) users;
-        return null;
-    }
+                brugere.add(bruger);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return brugere;
+    }
 
-
+    @Override
     public void retBruger(IBrugerDTO brugerDTO) throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
+            Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ? WHERE BrugerID = ?;");
-//            PreparedStatement roller = connection.prepareStatement("UPDATE Roller SET rolle = ? WHERE BrugerID = ?;");
 
             statement.setString(1, brugerDTO.getBrugerNavn());
             statement.setString(2, brugerDTO.getBrugerIni());
@@ -140,30 +114,21 @@ public class BrugerDAO implements IBrugerDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-
-
-            //Ved ikke om den overskriver den allerede gemte rolle. Skal lige testes.
-//            for(int i = 0; i < brugerDTO.getRolleliste().size(); i++){
-//                roller.setString(1,brugerDTO.getRoller(i));
-//                roller.setInt(2, brugerDTO.getBrugerID());
-//                roller.executeUpdate();
-//            }
-        }
-
-      /*  public void deleteBruger ( int ID){
-            try (Connection connection = DriverManager.getConnection(url + userName + "&" + pass)) {
-                PreparedStatement statement = connection.prepareStatement("DELETE * FROM Bruger WHERE BrugerID = ?;");
-//            PreparedStatement roller = connection.prepareStatement("DELETE * FROM Roller WHERE BrugerID = ?;");
-
-//            roller.setInt(1,ID);
-//            roller.execute();
-
-                statement.setInt(1, ID);
-                statement.execute();
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }*/
         }
     }
+
+    @Override
+    public void sletBruger(int id) {
+        try {
+            Connection connection = Connect.getInstance().createConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE * FROM Bruger WHERE BrugerID = ?;");
+
+            statement.setInt(1, id);
+            statement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+

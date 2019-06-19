@@ -3,7 +3,9 @@ package rest;
 
 import Controllers.BrugeradministrationCTRL;
 import DAL.DTO.BrugerDTO;
+import DAL.DTO.IBrugerDTO;
 import DAL.IDALException;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,31 +20,37 @@ public class CreateUser {
 
 
     @GET
-    public Response seAlleBrugere(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+    @Path("seallebrugere")
+    public Response seAlleBrugere(BrugerDTO brugerDTO) throws SQLException, IDALException.DALException {
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-        brugeradministrationCTRL.seAlleBrugere(brugerDTO.getBrugerId(),brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(),brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
-
-
+        brugeradministrationCTRL.brugerListe().toString();
         return Response.ok("hej").build();
     }
 
     @GET
     @Path("{id}")
-    public Response retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+    public IBrugerDTO seBruger(@PathParam("id") int id)  throws IDALException.DALException, SQLException {
+        System.out.println("jeg er her");
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-        brugeradministrationCTRL.retBruger(brugerDTO.getBrugerId(),brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(),brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
-
-
-        return Response.ok("hej").build();
+        System.out.println(brugeradministrationCTRL.seBruger(id));
+        return brugeradministrationCTRL.seBruger(id);
     }
 
 
+//    @GET
+//    @Path("{id}")
+//    public Response retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+//        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
+//        brugeradministrationCTRL.retBruger(brugerDTO.getBrugerId(), brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(), brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
+//
+//        return Response.ok("hej").build();
+//    }
+
 
     @POST
-    public Response opretUser(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+    public Response opretBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-        brugeradministrationCTRL.opretBruger(brugerDTO.getBrugerId(),brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(),brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
-
+        brugeradministrationCTRL.opretBruger(brugerDTO.getBrugerId(), brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(), brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
 
         return Response.ok("Velkommen" + brugerDTO.getBrugerNavn() + "Du har nu oprettet en bruger").build();
 

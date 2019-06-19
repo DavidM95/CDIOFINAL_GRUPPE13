@@ -1,5 +1,6 @@
 package DAL.DAO;
 
+import DAL.DTO.BrugerDTO;
 import DAL.DTO.IBrugerDTO;
 import DAL.IDALException;
 
@@ -16,9 +17,11 @@ public interface IBrugerDAO {
 
     IBrugerDTO getBruger(int brugerid) throws IDALException.DALException, SQLException;
 
-    List<IBrugerDTO> getBrugerList() throws IDALException.DALException;
+    List<BrugerDTO> getBrugerListe() throws IDALException.DALException, SQLException;
 
     void retBruger(IBrugerDTO user) throws IDALException.DALException, SQLException;
+
+    void sletBruger(int id) throws  IDALException.DALException, SQLException;
 
 }
 

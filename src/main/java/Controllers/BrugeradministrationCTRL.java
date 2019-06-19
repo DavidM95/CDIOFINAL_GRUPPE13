@@ -8,10 +8,9 @@ import DAL.DTO.IBrugerDTO;
 import DAL.IDALException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class BrugeradministrationCTRL implements IBrugerDAO {
+public class BrugeradministrationCTRL {
 
     public boolean BrugerIdCheck(int brugerId) throws IDALException.DALException {
         IBrugerDAO brugerDAO = new BrugerDAO();
@@ -34,63 +33,38 @@ public class BrugeradministrationCTRL implements IBrugerDAO {
 
     public void opretBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole) throws IDALException.DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRole ); // TODO tilføj roller
+        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRole); // TODO tilføj roller
 //        if (!BrugerIdCheck(brugerId)) {
-            brugerDAO.opretBruger(brugerDTO);
+        brugerDAO.opretBruger(brugerDTO);
 //        }
     }
 
-    public void retBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword,String brugerRolle) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
+    public void retBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRolle) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
         IBrugerDAO brugerDAO = new BrugerDAO();
         IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRolle); // TODO tilføj roller
 //        if (BrugerIdCheck(brugerId)) {
-            brugerDAO.retBruger(brugerDTO);
+        brugerDAO.retBruger(brugerDTO);
 //        }else{
-            //TODO returnere en fejlbesked
+        //TODO returnere en fejlbesked
 //        }
     }
 
-    public IBrugerDTO seBruger(int brugerId) throws IDALException.DALException {
+    public IBrugerDTO seBruger(int brugerId) throws IDALException.DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = brugerDAO.getBrugerId(brugerId);
-//        if (BrugerIdCheck(brugerId)) {
-             // TODO få DAO til at virke
-            return brugerDTO;
-//        }else return null; //TODO tilføj fejlbesked ved ugyldigt ID
+        IBrugerDTO brugerDTO = brugerDAO.getBruger(brugerId);
+
+
+   //     if (BrugerIdCheck(brugerId)) {
+        // TODO få DAO til at virke
+        return brugerDTO;
+    //    }else return null; //TODO tilføj fejlbesked ved ugyldigt ID
     }
 
-    public void seAlleBrugere(int brugerId, String brugerNavn, String brugerIni, String brugerPassword,String brugerRolle){
+
+
+    public List<BrugerDTO> brugerListe() throws SQLException, IDALException.DALException {
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRolle);
+        return brugerDAO.getBrugerListe();
     }
 
-    @Override
-    public void opretBruger(IBrugerDTO user) throws IDALException.DALException {
-
-    }
-
-    @Override
-    public IBrugerDTO getBrugerId(int userId) throws IDALException.DALException {
-        return null;
-    }
-
-    @Override
-    public IBrugerDTO getBrugerPassword(int userId) throws IDALException.DALException {
-        return null;
-    }
-
-    @Override
-    public IBrugerDTO getBruger(int brugerid) throws IDALException.DALException {
-        return null;
-    }
-
-    @Override
-    public List<IBrugerDTO> getBrugerList() throws IDALException.DALException {
-        return null;
-    }
-
-    @Override
-    public void retBruger(IBrugerDTO user) throws IDALException.DALException {
-
-    }
 }
