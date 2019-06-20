@@ -31,17 +31,17 @@ public class BrugeradministrationCTRL {
 
     }
 
-    public void opretBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole) throws IDALException.DALException, SQLException {
+    public void opretBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole, boolean erAktiv) throws IDALException.DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRole); // TODO tilføj roller
+        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRole, erAktiv); // TODO tilføj roller
 //        if (!BrugerIdCheck(brugerId)) {
         brugerDAO.opretBruger(brugerDTO);
 //        }
     }
 
-    public void retBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRolle) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
+    public void retBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRolle, boolean erAktiv) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRolle); // TODO tilføj roller
+        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRolle, erAktiv); // TODO tilføj roller
 //        if (BrugerIdCheck(brugerId)) {
         brugerDAO.retBruger(brugerDTO);
 //        }else{

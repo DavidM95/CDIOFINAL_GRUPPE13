@@ -13,4 +13,6 @@ public interface IBrugerDTO {
     String getBrugerIni();
 
     String getBrugerRole();
+
+    boolean getErAktiv();
 }

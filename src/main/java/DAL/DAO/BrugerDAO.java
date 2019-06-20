@@ -23,13 +23,15 @@ public class BrugerDAO implements IBrugerDAO {
             Connection connection = Connect.getInstance().createConnection();
 //                    Class.forName("com.mysql.cj.jdbc.Driver");
 //            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Bruger VALUES (?,?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Bruger VALUES (?,?,?,?,?,?);");
 
             statement.setInt(1, brugerDTO.getBrugerId());
             statement.setString(2, brugerDTO.getBrugerNavn());
             statement.setString(3, brugerDTO.getBrugerIni());
             statement.setString(4, brugerDTO.getBrugerPassword());
             statement.setString(5, brugerDTO.getBrugerRole());
+            statement.setBoolean(6,brugerDTO.getErAktiv());
+
             statement.execute();
 
         } catch (Exception e) {
@@ -45,8 +47,8 @@ public class BrugerDAO implements IBrugerDAO {
 
     @Override
     public IBrugerDTO getBrugerPassword(int userId) throws IDALException.DALException {
-        IBrugerDTO dao = new BrugerDTO();
-        return dao;
+        IBrugerDTO dto = new BrugerDTO();
+        return dto;
     }
 
     @Override
@@ -61,7 +63,7 @@ public class BrugerDAO implements IBrugerDAO {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
 
-            IBrugerDTO user = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("ini"), resultSet.getString("password"), resultSet.getString("rolle"));
+            IBrugerDTO user = new BrugerDTO(resultSet.getInt("brugerId"), resultSet.getString("brugerNavn"), resultSet.getString("ini"), resultSet.getString("password"), resultSet.getString("rolle"), resultSet.getBoolean("aktiv"));
 
             return user;
         } catch (Exception e) {
@@ -90,6 +92,7 @@ public class BrugerDAO implements IBrugerDAO {
                 bruger.setBrugerIni(res.getString("ini"));
                 bruger.setBrugerPassword(res.getString("password"));
                 bruger.setBrugerRole(res.getString("rolle"));
+                bruger.setErAktiv(res.getBoolean("aktiv"));
 
                 brugere.add(bruger);
             }
@@ -103,13 +106,14 @@ public class BrugerDAO implements IBrugerDAO {
     public void retBruger(IBrugerDTO brugerDTO) throws SQLException {
         try {
             Connection connection = Connect.getInstance().createConnection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ? WHERE BrugerID = ?;");
+            PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ?, aktiv = ? WHERE BrugerID = ?;");
 
             statement.setString(1, brugerDTO.getBrugerNavn());
             statement.setString(2, brugerDTO.getBrugerIni());
             statement.setString(3, brugerDTO.getBrugerPassword());
             statement.setInt(4, brugerDTO.getBrugerId());
             statement.setString(5, brugerDTO.getBrugerRole());
+            statement.setBoolean(6,brugerDTO.getErAktiv());
             statement.executeUpdate();
 
         } catch (Exception e) {

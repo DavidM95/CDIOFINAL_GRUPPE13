@@ -52,7 +52,7 @@ public class CreateUser {
     @POST
     public Response opretBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-        brugeradministrationCTRL.opretBruger(brugerDTO.getBrugerId(), brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(), brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole());
+        brugeradministrationCTRL.opretBruger(brugerDTO.getBrugerId(), brugerDTO.getBrugerNavn(), brugerDTO.getBrugerIni(), brugerDTO.getBrugerPassword(), brugerDTO.getBrugerRole(), brugerDTO.getErAktiv());
 
         return Response.ok("Velkommen" + brugerDTO.getBrugerNavn() + "Du har nu oprettet en bruger").build();
 

@@ -1,8 +1,6 @@
 package DAL.DTO;
 
 
-import java.util.List;
-
 public class BrugerDTO implements IBrugerDTO {
 
     private int brugerId;
@@ -10,9 +8,10 @@ public class BrugerDTO implements IBrugerDTO {
     private String brugerIni;
     private String brugerPassword;
     private String brugerRole;
+    private boolean erAktiv;
 
     public BrugerDTO(int brugerId, String brugerNavn, String brugerIni,
-                     String brugerPassword, String brugerRole) {
+                     String brugerPassword, String brugerRole, boolean erAktiv) {
 
 
         this.brugerId = brugerId;
@@ -20,11 +19,15 @@ public class BrugerDTO implements IBrugerDTO {
         this.brugerIni = brugerIni;
         this.brugerPassword = brugerPassword;
         this.brugerRole = brugerRole;
+        this.erAktiv = erAktiv;
     }
 
     public BrugerDTO() {
 
     }
+//
+//    public BrugerDTO(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole, boolean erAktiv) {
+//    }
 
     @Override
     public int getBrugerId() {
@@ -51,6 +54,14 @@ public class BrugerDTO implements IBrugerDTO {
         return this.brugerRole;
     }
 
+    @Override
+    public boolean getErAktiv() {
+        return true;
+    }
+
+    public void setErAktiv(boolean erAktiv) {
+        this.erAktiv = erAktiv;
+    }
 
     public void setBrugerId(int brugerId) {
         this.brugerId = brugerId;
@@ -80,6 +91,7 @@ public class BrugerDTO implements IBrugerDTO {
                 ", brugerIni=" + brugerIni +
                 ", brugerPassword=" + brugerPassword +
                 ", brugerRole=" + brugerRole +
+                ", aktiv=" + erAktiv +
                 '}';
     }
 }

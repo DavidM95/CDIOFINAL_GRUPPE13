@@ -23,5 +23,6 @@ public interface IBrugerDAO {
 
     void sletBruger(int id) throws  IDALException.DALException, SQLException;
 
+
 }
 

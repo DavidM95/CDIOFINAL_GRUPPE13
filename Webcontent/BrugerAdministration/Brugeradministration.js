@@ -63,7 +63,8 @@ function generateUserHTML(brugerDTO) {
         '<td>' + brugerDTO.brugerNavn + '</td>' +
         '<td>' + brugerDTO.brugerIni + '</td>' +
         '<td>' + brugerDTO.brugerPassword + '</td>' +
-        '<td>' + brugerDTO.brugerRole + '</td>'
+        '<td>' + brugerDTO.brugerRole + '</td>' +
+        '<td>' + brugerDTO.erAktiv + '</td>'
 }
 
 function retBruger() {

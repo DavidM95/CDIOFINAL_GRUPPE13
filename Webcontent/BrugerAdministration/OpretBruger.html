@@ -27,10 +27,21 @@
 <h1>Button Group</h1>
 
 <div class="btn-group">
-    <a href='./OpretBruger.html'><button>Opret Bruger</button></a>
-    <a href='RetBruger.html'><button>Ret Bruger</button></a>
-    <a href='SeBruger.html'><button>Se Bruger</button></a>
-    <a href='SletBruger.html'><button>Slet Bruger</button></a>
+    <a href='OpretBruger.html'>
+        <button>Opret Bruger</button>
+    </a>
+    <a href='./RetBruger.html'>
+        <button>Ret Bruger</button>
+    </a>
+    <a href='./SeBruger.html'>
+        <button>Se Bruger</button>
+    </a>
+    <a href='./SeAlleBrugere.html'>
+        <button>Se Alle Brugere</button>
+    </a>
+    <a href='./SletBruger.html'>
+        <button>Slet Bruger</button>
+    </a>
 </div>
 <div class="indhold">
 <h2>Opret Bruger</h2>
@@ -50,6 +61,9 @@
 
     <label for="brugerRole">Role </label>
     <input type="text" id="brugerRole" name="brugerRole">
+
+    <label for="erAktiv">Aktiv </label>
+    <input type="checkbox" id="erAktiv" name="erAktiv">
 
     <button onclick="opretBruger();">Opret Bruger</button>
 </form>
