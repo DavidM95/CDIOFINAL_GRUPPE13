@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
+import java.util.List;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -21,10 +22,11 @@ public class CreateUser {
 
     @GET
     @Path("seallebrugere")
-    public Response seAlleBrugere(BrugerDTO brugerDTO) throws SQLException, IDALException.DALException {
+    public List<BrugerDTO> seAlleBrugere(BrugerDTO brugerDTO) throws SQLException, IDALException.DALException {
+        System.out.println("Nu er jeg i se alle brugere");
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-        brugeradministrationCTRL.brugerListe().toString();
-        return Response.ok("hej").build();
+        return brugeradministrationCTRL.brugerListe();
+//        return Response.ok("hej").build();
     }
 
     @GET

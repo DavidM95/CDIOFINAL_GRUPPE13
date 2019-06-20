@@ -19,7 +19,7 @@ function opretBruger() {
 
 
 function getBruger(ID) {
-    if(!ID && ID!=0){
+    if (!ID && ID != 0) {
         ID = $('#ID').val();
     }
     alert(ID);
@@ -29,15 +29,39 @@ function getBruger(ID) {
         url: '/rest/createUser/' + ID,
         method: "GET",
         success:
-        function (data) {
-            $("#usertablebody").empty();
-            $("#usertablebody").append(generateUserHTML(data));
-            /*            $.each(data, function (i, elt) {
-                            alert("DATA!");
-                            $('#usertablebody').append(generateUserHTML(elt));
-                        });*/
+            function (data) {
+                $("#usertablebody").empty();
+                $("#usertablebody").append(generateUserHTML(data));
+                /*            $.each(data, function (i, elt) {
+                                alert("DATA!");
+                                $('#usertablebody').append(generateUserHTML(elt));
+                            });*/
 
-        },
+            },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+}
+
+
+function getAlleBrugere() {
+    // if(!ID && ID!=0){
+    //     ID = $('#ID').val();
+    // }
+    event.preventDefault();
+
+    $.ajax({
+        url: '/rest/createUser/seallebrugere',
+        method: "GET",
+        success:
+            function (data) {
+                $("#alluserstablebody").empty();
+                $.each(data, function (i, elt) {
+                    $('#alluserstablebody').append(generateUserHTML(elt));
+                });
+
+            },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
         }
@@ -50,22 +74,25 @@ function generateUserHTML(brugerDTO) {
         '<td>' + brugerDTO.brugerIni + '</td>' +
         '<td>' + brugerDTO.brugerPassword + '</td>' +
         '<td>' + brugerDTO.brugerRole + '</td>'
-    /*'<tr><td>' + .id + '</td>' +
-        '<td>' + ingredient.name + '</td>' +
-        '<td>' + ingredient.amount + '</td>' +*/
 }
 
-function getAlleBrugere() {
-    $.get('rest/createUser/seallebrugere', function (data, status) {
-        alert(data);
-        document.getElementById("id").value = data.brugerId;
-        document.getElementById("brugernavn").value = data.brugerNavn;
-        document.getElementById("brugerini").value = data.brugerIni;
-        document.getElementById("brugerpassword").value = data.brugerPassword;
-        document.getElementById("brugerrolle").value = data.brugerRole;
-        alert(status);
-    })
+function generateUserFromList() {
+
 }
+
+// function getAlleBrugere() {
+//     $.get('rest/createUser/seallebrugere', function (data, status) {
+//         alert(data);
+//         document.getElementById("id").value = data.brugerId;
+//         document.getElementById("brugernavn").value = data.brugerNavn;
+//         document.getElementById("brugerini").value = data.brugerIni;
+//         document.getElementById("brugerpassword").value = data.brugerPassword;
+//         document.getElementById("brugerrolle").value = data.brugerRole;
+//         alert(status);
+//     })
+// }
+
+
 
 
 
