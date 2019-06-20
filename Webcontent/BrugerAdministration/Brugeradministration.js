@@ -66,6 +66,15 @@ function generateUserHTML(brugerDTO) {
         '<td>' + brugerDTO.brugerRole + '</td>'
 }
 
+function retBruger() {
+
+}
+
+function sletBruger() {
+
+
+}
+
 
 
 
