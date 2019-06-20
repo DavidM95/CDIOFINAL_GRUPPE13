@@ -4,7 +4,7 @@ function opretBruger() {
     var data = $('#opretbruger').serializeJSON();
     alert(data);
     $.ajax({
-        url: '/rest/createUser/',
+        url: '/rest/UserService/',
         method: 'POST',
         contentType: "application/json", // det visender er json
         data: data,
@@ -26,7 +26,7 @@ function getBruger(ID) {
     event.preventDefault();
 
     $.ajax({
-        url: '/rest/createUser/' + ID,
+        url: '/rest/UserService/' + ID,
         method: "GET",
         success:
             function (data) {
@@ -43,7 +43,7 @@ function getBruger(ID) {
 function getAlleBrugere() {
     event.preventDefault();
     $.ajax({
-        url: '/rest/createUser/seallebrugere',
+        url: '/rest/UserService/seallebrugere',
         method: "GET",
         success:
             function (data) {
@@ -64,19 +64,31 @@ function generateUserHTML(brugerDTO) {
         '<td>' + brugerDTO.brugerIni + '</td>' +
         '<td>' + brugerDTO.brugerPassword + '</td>' +
         '<td>' + brugerDTO.brugerRole + '</td>' +
-        '<td>' + brugerDTO.erAktiv + '</td>'
+        '<td>' + brugerDTO.erAktiv + '</td></tr>'
 }
+
+function setBrugerAktivitet() {
+    ID = $('#ID').val();
+    alert("jeg er her");
+    event.preventDefault();
+    alert(ID)
+    $.ajax({
+        url: '/rest/UserService/setBrugerAktivitet/' + ID,
+        method: "POST",
+        success:
+            function () {
+                alert("nu er jeg her")
+            },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    })
+}
+
 
 function retBruger() {
 
 }
-
-function sletBruger() {
-
-
-}
-
-
 
 
 

@@ -24,9 +24,9 @@ public class LoginService {
 //        brugeradministrationCTRL.LoginChecker(brugerId, brugerPassword);
         System.out.println(loginDTO.getBrugerId());
         System.out.println(loginDTO.getBrugerPassword());
-            return Response.ok("Velkommen"+ loginDTO.getBrugerId() + " , du er nu logget ind").build();
+        return Response.ok("Velkommen" + loginDTO.getBrugerId() + " , du er nu logget ind").build();
 
-}
+    }
     /*}
 
 

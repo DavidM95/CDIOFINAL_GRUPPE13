@@ -52,14 +52,10 @@ public class BrugeradministrationCTRL {
     public IBrugerDTO seBruger(int brugerId) throws IDALException.DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
         IBrugerDTO brugerDTO = brugerDAO.getBruger(brugerId);
-
-
-   //     if (BrugerIdCheck(brugerId)) {
-        // TODO få DAO til at virke
+        //     if (BrugerIdCheck(brugerId)) {
         return brugerDTO;
-    //    }else return null; //TODO tilføj fejlbesked ved ugyldigt ID
+        //    }else return null; //TODO tilføj fejlbesked ved ugyldigt ID
     }
-
 
 
     public List<BrugerDTO> brugerListe() throws SQLException, IDALException.DALException {
@@ -67,4 +63,12 @@ public class BrugeradministrationCTRL {
         return brugerDAO.getBrugerListe();
     }
 
+    public void setBrugerAktivitet(int id) throws IDALException.DALException, SQLException {
+        IBrugerDAO dao = new BrugerDAO();
+        IBrugerDTO brugerDTO = dao.getBruger(id);
+        System.out.println("før" + brugerDTO.getErAktiv());
+        brugerDTO.setErAktiv(!brugerDTO.getErAktiv());
+        System.out.println("Efter" + brugerDTO.getErAktiv());
+        dao.setBrugerAktivitet(brugerDTO);
+    }
 }

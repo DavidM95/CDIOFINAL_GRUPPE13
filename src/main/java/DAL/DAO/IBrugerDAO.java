@@ -21,7 +21,7 @@ public interface IBrugerDAO {
 
     void retBruger(IBrugerDTO user) throws IDALException.DALException, SQLException;
 
-    void sletBruger(int id) throws  IDALException.DALException, SQLException;
+    void setBrugerAktivitet(IBrugerDTO id) throws  IDALException.DALException, SQLException;
 
 
 }

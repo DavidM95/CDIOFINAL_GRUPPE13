@@ -30,7 +30,7 @@ public class BrugerDAO implements IBrugerDAO {
             statement.setString(3, brugerDTO.getBrugerIni());
             statement.setString(4, brugerDTO.getBrugerPassword());
             statement.setString(5, brugerDTO.getBrugerRole());
-            statement.setBoolean(6,brugerDTO.getErAktiv());
+            statement.setBoolean(6, brugerDTO.getErAktiv());
 
             statement.execute();
 
@@ -106,14 +106,14 @@ public class BrugerDAO implements IBrugerDAO {
     public void retBruger(IBrugerDTO brugerDTO) throws SQLException {
         try {
             Connection connection = Connect.getInstance().createConnection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ?, aktiv = ? WHERE BrugerID = ?;");
+            PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ? WHERE BrugerID = ?;");
 
             statement.setString(1, brugerDTO.getBrugerNavn());
             statement.setString(2, brugerDTO.getBrugerIni());
             statement.setString(3, brugerDTO.getBrugerPassword());
-            statement.setInt(4, brugerDTO.getBrugerId());
-            statement.setString(5, brugerDTO.getBrugerRole());
-            statement.setBoolean(6,brugerDTO.getErAktiv());
+            statement.setString(4, brugerDTO.getBrugerRole());
+//            statement.setBoolean(5,brugerDTO.getErAktiv());
+            statement.setInt(5, brugerDTO.getBrugerId());
             statement.executeUpdate();
 
         } catch (Exception e) {
@@ -121,13 +121,15 @@ public class BrugerDAO implements IBrugerDAO {
         }
     }
 
+
     @Override
-    public void sletBruger(int id) {
+    public void setBrugerAktivitet(IBrugerDTO brugerDTO) {
         try {
             Connection connection = Connect.getInstance().createConnection();
-            PreparedStatement statement = connection.prepareStatement("DELETE * FROM Bruger WHERE BrugerID = ?;");
+            PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET aktiv = ? WHERE BrugerID = ?;");
 
-            statement.setInt(1, id);
+            statement.setBoolean(1, brugerDTO.getErAktiv());
+            statement.setInt(2, brugerDTO.getBrugerId());
             statement.execute();
 
         } catch (SQLException e) {

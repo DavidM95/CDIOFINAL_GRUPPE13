@@ -56,29 +56,35 @@ public class BrugerDTO implements IBrugerDTO {
 
     @Override
     public boolean getErAktiv() {
-        return true;
+        return this.erAktiv;
     }
 
+    @Override
     public void setErAktiv(boolean erAktiv) {
         this.erAktiv = erAktiv;
     }
 
+    @Override
     public void setBrugerId(int brugerId) {
         this.brugerId = brugerId;
     }
 
+    @Override
     public void setBrugerNavn(String brugerNavn) {
         this.brugerNavn = brugerNavn;
     }
 
+    @Override
     public void setBrugerIni(String brugerIni) {
         this.brugerIni = brugerIni;
     }
 
+    @Override
     public void setBrugerPassword(String brugerPassword) {
         this.brugerPassword = brugerPassword;
     }
 
+    @Override
     public void setBrugerRole(String brugerRole) {
         this.brugerRole = brugerRole;
     }

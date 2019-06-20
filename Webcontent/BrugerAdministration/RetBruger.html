@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bruger Administration</title>
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.5.5/jquery.smooth-scroll.min.js"></script>-->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.5.5/jquery.smooth-scroll.min.js"></script>-->
     <link rel="stylesheet" href="../Css.Main.css">
     <script src="../JS.Main.js"></script>
     <script src="Brugeradministration.js"></script>
@@ -19,7 +19,8 @@
     <ul class="navbar-container">
         <li class="nav-item"><a href="../index.html" class="left-underline nav-button" data-scroll>Home</a></li>
         <li class="nav-item"><a href="../Login/Login.html" class="left-underline nav-button" data-scroll>Login</a></li>
-        <li class="nav-item active"><a href="../BrugerAdministration/BrugerAdministration.html" class="left-underline nav-button" data-scroll>Bruger Administration</a></li>
+        <li class="nav-item active"><a href="../BrugerAdministration/BrugerAdministration.html"
+                                       class="left-underline nav-button" data-scroll>Bruger Administration</a></li>
         <div class="Loggedin">
             logget ind som "Admin"
         </div>
@@ -32,7 +33,7 @@
     <a href='./OpretBruger.html'>
         <button>Opret Bruger</button>
     </a>
-    <a href='/RetBruger.html'>
+    <a href='./RetBruger.html'>
         <button>Ret Bruger</button>
     </a>
     <a href='./SeBruger.html'>
@@ -41,8 +42,8 @@
     <a href='./SeAlleBrugere.html'>
         <button>Se Alle Brugere</button>
     </a>
-    <a href='./SletBruger.html'>
-        <button>Slet Bruger</button>
+    <a href='SetBrugerAktivitet.html'>
+        <button>Skift Brugeraktivitet</button>
     </a>
 </div>
 <div class="indhold">
@@ -56,28 +57,28 @@
         <button onclick="sebruger()"> Se Bruger</button>
 
     </form>
-<div id = retbruger>
-    <button onclick=""> Ret Bruger</button>
-    <form id="retbrugerform" method="GET" action="rest/createUser/seallebrugere">
-        <h2>Ret Bruger</h2>
-        ID:<br>
-        <input type="text" name="ID" id="brugerid" value="" readonly>
-        <br>
-        Brugernavn:<br>
-        <input type="text" name="Brugernavn" id="brugernavn" value="">
-        <br>
-        Initialer:<br>
-        <input type="text" name="Ini" id="brugerini" value="">
-        <br>
-        Password:<br>
-        <input type="text" name="Password" id="brugerpassword" value="">
-        <br>
-        Rolle:<br>
-        <input type="text" name="Rolle" id="brugerrolle" value="">
-        <br><br>
-        <input type = "submit" value="visbrugere">
-    </form>
-</div>
+    <div id=retbruger>
+        <button onclick=""> Ret Bruger</button>
+        <form id="retbrugerform" method="GET" action="rest/UserService/seallebrugere">
+            <h2>Ret Bruger</h2>
+            ID:<br>
+            <input type="text" name="ID" id="brugerid" value="" readonly>
+            <br>
+            Brugernavn:<br>
+            <input type="text" name="Brugernavn" id="brugernavn" value="">
+            <br>
+            Initialer:<br>
+            <input type="text" name="Ini" id="brugerini" value="">
+            <br>
+            Password:<br>
+            <input type="text" name="Password" id="brugerpassword" value="">
+            <br>
+            Rolle:<br>
+            <input type="text" name="Rolle" id="brugerrolle" value="">
+            <br><br>
+            <input type="submit" value="visbrugere">
+        </form>
+    </div>
     <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 </div>
 <footer>
