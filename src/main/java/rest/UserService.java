@@ -40,16 +40,13 @@ public class UserService {
     }
 
 
-//    @POST
-//    @Path("/update/{id}")
-//    public Response retBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRolle, boolean erAktiv) throws IDALException.DALException, SQLException {
-//        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
-//        BrugerDTO brugerDTO = new BrugerDTO();
-//        brugeradministrationCTRL.retBruger(brugerId,brugerNavn,brugerIni,brugerPassword,brugerRolle,erAktiv);
-//        brugerDTO.setBrugerId();
-//
-//        return Response.ok("hej").build();
-//    }
+    @POST
+    @Path("/update/")
+    public Response retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
+        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
+        brugeradministrationCTRL.retBruger(brugerDTO);
+        return Response.ok("hej").build();
+    }
 
 
     @POST

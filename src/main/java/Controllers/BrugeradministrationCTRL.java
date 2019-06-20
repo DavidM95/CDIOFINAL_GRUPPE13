@@ -39,9 +39,8 @@ public class BrugeradministrationCTRL {
 //        }
     }
 
-    public void retBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRolle, boolean erAktiv) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
+    public void retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRolle, erAktiv); // TODO tilføj roller
 //        if (BrugerIdCheck(brugerId)) {
         brugerDAO.retBruger(brugerDTO);
 //        }else{

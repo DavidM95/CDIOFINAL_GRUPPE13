@@ -46,40 +46,35 @@
         <button>Skift Brugeraktivitet</button>
     </a>
 </div>
+
+
 <div class="indhold">
     <h2>Indtast ID</h2>
 
     <form>
         ID:<br>
-        <input type="text" name="ID" id="getbrugerID">
+        <input type="text" name="ID" id="ID">
         <br>
 
-        <button onclick="sebruger()"> Se Bruger</button>
-
+        <button onclick="brugerDerSkalRettes()"> Se Bruger</button>
     </form>
+
+
     <div id=retbruger>
-        <button onclick=""> Ret Bruger</button>
-        <form id="retbrugerform" method="GET" action="rest/UserService/seallebrugere">
-            <h2>Ret Bruger</h2>
-            ID:<br>
-            <input type="text" name="ID" id="brugerid" value="" readonly>
-            <br>
-            Brugernavn:<br>
-            <input type="text" name="Brugernavn" id="brugernavn" value="">
-            <br>
-            Initialer:<br>
-            <input type="text" name="Ini" id="brugerini" value="">
-            <br>
-            Password:<br>
-            <input type="text" name="Password" id="brugerpassword" value="">
-            <br>
-            Rolle:<br>
-            <input type="text" name="Rolle" id="brugerrolle" value="">
-            <br><br>
-            <input type="submit" value="visbrugere">
+        <form id="retbrugerform">
+        <table>
+            <thead>
+            <tr>
+            </tr>
+            </thead>
+
+                <tbody id="usertablebody">
+
+                </tbody>
+        </table>
         </form>
+
     </div>
-    <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 </div>
 <footer>
 </footer>

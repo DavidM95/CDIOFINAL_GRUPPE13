@@ -1,6 +1,5 @@
 package DAL.DTO;
 
-
 public class BrugerDTO implements IBrugerDTO {
 
     private int brugerId;
@@ -25,9 +24,7 @@ public class BrugerDTO implements IBrugerDTO {
     public BrugerDTO() {
 
     }
-//
-//    public BrugerDTO(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole, boolean erAktiv) {
-//    }
+
 
     @Override
     public int getBrugerId() {

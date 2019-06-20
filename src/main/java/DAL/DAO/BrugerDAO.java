@@ -107,12 +107,12 @@ public class BrugerDAO implements IBrugerDAO {
         try {
             Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ? WHERE BrugerID = ?;");
-
+            System.out.println("JEG TISSER PÅ OST");
+            System.out.println(brugerDTO);
             statement.setString(1, brugerDTO.getBrugerNavn());
             statement.setString(2, brugerDTO.getBrugerIni());
             statement.setString(3, brugerDTO.getBrugerPassword());
             statement.setString(4, brugerDTO.getBrugerRole());
-//            statement.setBoolean(5,brugerDTO.getErAktiv());
             statement.setInt(5, brugerDTO.getBrugerId());
             statement.executeUpdate();
 
