@@ -10,64 +10,61 @@ import DAL.IDALException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BrugeradministrationCTRL {
+public class BrugeradministrationCTRL implements IDALException {
 
-    public boolean BrugerIdCheck(int brugerId) throws IDALException.DALException {
+    public boolean BrugerIdCheck(int brugerId) throws DALException {
         IBrugerDAO brugerDAO = new BrugerDAO();
         IBrugerDTO brugerDTO = brugerDAO.getBrugerId(brugerId);
-        if (brugerDTO.getBrugerId() == brugerId) { //TODO Test
+        if (brugerDTO.getBrugerId() == brugerId) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean LoginChecker(int brugerId, String brugerPassword) throws IDALException.DALException {
+    public boolean LoginChecker(int brugerId, String brugerPassword) throws DALException {
         IBrugerDAO brugerDAO = new BrugerDAO();
         IBrugerDTO brugerDTO = brugerDAO.getBrugerId(brugerId);
         if (BrugerIdCheck(brugerId) && brugerDTO.getBrugerPassword().equals(brugerPassword)) {
             return true;
-        } else return false; //TODO Implemnter besked om at brugerId og password ike passede sammen
+        } else return false;
 
     }
 
-    public void opretBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole, boolean erAktiv) throws IDALException.DALException, SQLException {
+    public void opretBruger(int brugerId, String brugerNavn, String brugerIni, String brugerPassword, String brugerRole, boolean erAktiv) throws DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
-        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRole, erAktiv); // TODO tilføj roller
+        IBrugerDTO brugerDTO = new BrugerDTO(brugerId, brugerNavn, brugerIni, brugerPassword, brugerRole, erAktiv);
 //        if (!BrugerIdCheck(brugerId)) {
         brugerDAO.opretBruger(brugerDTO);
 //        }
     }
 
-    public void retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException { //TODO tilføj roller som en variable
+    public void retBruger(BrugerDTO brugerDTO) throws DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
 //        if (BrugerIdCheck(brugerId)) {
         brugerDAO.retBruger(brugerDTO);
 //        }else{
-        //TODO returnere en fejlbesked
 //        }
     }
 
-    public IBrugerDTO seBruger(int brugerId) throws IDALException.DALException, SQLException {
+    public IBrugerDTO seBruger(int brugerId) throws DALException, SQLException {
         IBrugerDAO brugerDAO = new BrugerDAO();
         IBrugerDTO brugerDTO = brugerDAO.getBruger(brugerId);
         //     if (BrugerIdCheck(brugerId)) {
         return brugerDTO;
-        //    }else return null; //TODO tilføj fejlbesked ved ugyldigt ID
+        //    }else return null;
     }
 
 
-    public List<BrugerDTO> brugerListe() throws SQLException, IDALException.DALException {
+    public List<BrugerDTO> brugerListe() throws SQLException, DALException {
         IBrugerDAO brugerDAO = new BrugerDAO();
         return brugerDAO.getBrugerListe();
     }
 
-    public void setBrugerAktivitet(int id) throws IDALException.DALException, SQLException {
+    public void setBrugerAktivitet(int id) throws DALException, SQLException {
         IBrugerDAO dao = new BrugerDAO();
         IBrugerDTO brugerDTO = dao.getBruger(id);
-        System.out.println("før" + brugerDTO.getErAktiv());
         brugerDTO.setErAktiv(!brugerDTO.getErAktiv());
-        System.out.println("Efter" + brugerDTO.getErAktiv());
         dao.setBrugerAktivitet(brugerDTO);
     }
 }

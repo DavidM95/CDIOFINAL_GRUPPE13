@@ -12,9 +12,9 @@
 //    public boolean ReceptIdCheck(int receptId) throws SQLException {
 //        IReceptDAO receptDAO = new ReceptDAO();
 //        IReceptDTO receptDTO = receptDAO.getRecept(receptId);
-//        if (receptDTO.getReceptId() == receptId){
+//        if (receptDTO.getReceptId() == receptId) {
 //            return true;
-//        }else return false;
+//        } else return false;
 //    }
 //
 //}

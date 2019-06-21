@@ -1,5 +1,6 @@
 //package DAL.DAO;
 //
+//import DAL.Connect;
 //import DAL.DTO.IProduktionDTO;
 //import DAL.DTO.ProduktionDTO;
 //
@@ -7,8 +8,10 @@
 //
 //public class ProduktionDAO implements IProduktionDAO {
 //
-//    public void createProduktion(Connection connection, IProduktionDTO produktionDTO) {
+//    public void createProduktion(IProduktionDTO produktionDTO) {
 //        try {
+//              Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("INSERT into Produktion values(?,?,?,?,?,?,?);");
 //
 //            Date sqlDateStart = new Date(produktionDTO.getStartDato().getTime());
@@ -29,8 +32,10 @@
 //        }
 //    }
 //
-//    public IProduktionDTO getProduktion(Connection connection, int ID) {
+//    public IProduktionDTO getProduktion(int ID) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Produktion WHERE ProduktionsID = ?;");
 //
 //            statement.setInt(1, ID);
@@ -52,8 +57,10 @@
 //        return null;
 //    }
 //
-//    public void updateProduktion(Connection connection, IProduktionDTO produktionDTO) {
+//    public void updateProduktion(IProduktionDTO produktionDTO) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("UPDATE Produktion SET ProduktionsID = ?, OpskriftID = ?, Produktionsmængde = ?, Produktionsstatus = ?, Startdato = ?, Slutdato = ?, BrugerID = ? WHERE ProduktionsID = ?;");
 //
 //            Date sqlDateStart = new Date(produktionDTO.getStartDato().getTime());
@@ -75,8 +82,10 @@
 //        }
 //    }
 //
-//    public void endProduktion(Connection connection, IProduktionDTO produktionDTO) {
+//    public void endProduktion(IProduktionDTO produktionDTO) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("UPDATE Produktion SET Produktionsstatus = ?, Slutdato = ?  WHERE ProduktionsID = ?;");
 //
 //            Date sqlDateslut = new Date(produktionDTO.getSlutDato().getTime());
@@ -92,8 +101,10 @@
 //        }
 //    }
 //
-//    public void deleteProduktion(Connection connection, int ID) {
+//    public void deleteProduktion(int ID) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("DELETE FROM Produktion WHERE = ?;");
 //
 //            statement.setInt(1,ID);

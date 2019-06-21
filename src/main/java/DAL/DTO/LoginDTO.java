@@ -1,8 +1,7 @@
 package DAL.DTO;
 
 
-
-public class LoginDTO  implements ILoginDTO{
+public class LoginDTO implements ILoginDTO {
     private int brugerId;
     private String brugerPassword;
 
@@ -10,7 +9,7 @@ public class LoginDTO  implements ILoginDTO{
 
     }
 
-    public LoginDTO(int brugerId, String brugerPassword){
+    public LoginDTO(int brugerId, String brugerPassword) {
 
         this.brugerId = brugerId;
         this.brugerPassword = brugerPassword;
@@ -19,10 +18,14 @@ public class LoginDTO  implements ILoginDTO{
 
 
     @Override
-    public int getBrugerId() {return this.brugerId; }
+    public int getBrugerId() {
+        return this.brugerId;
+    }
 
     @Override
-    public String getBrugerPassword(){return this.brugerPassword;}
+    public String getBrugerPassword() {
+        return this.brugerPassword;
+    }
 
 
     @Override

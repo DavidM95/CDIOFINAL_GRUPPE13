@@ -3,7 +3,6 @@ package DAL.DAO;
 import DAL.Connect;
 import DAL.DTO.BrugerDTO;
 import DAL.DTO.IBrugerDTO;
-import DAL.IDALException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,17 +11,11 @@ import java.util.List;
 public class BrugerDAO implements IBrugerDAO {
 
 
-    private final String url = "jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s160601?";
-    private final String userName = "user=s160601";
-    private final String pass = "password=t08HP36o2H0HGQzFhf4qo";
-
     @Override
-    public void opretBruger(IBrugerDTO brugerDTO) throws SQLException {
+    public void opretBruger(IBrugerDTO brugerDTO) {
 
         try {
             Connection connection = Connect.getInstance().createConnection();
-//                    Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection connection = DriverManager.getConnection(url + userName + "&" + pass);
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Bruger VALUES (?,?,?,?,?,?);");
 
             statement.setInt(1, brugerDTO.getBrugerId());
@@ -41,18 +34,18 @@ public class BrugerDAO implements IBrugerDAO {
 
 
     @Override
-    public IBrugerDTO getBrugerId(int userId) throws IDALException.DALException {
+    public IBrugerDTO getBrugerId(int userId) {
         return null;
     }
 
     @Override
-    public IBrugerDTO getBrugerPassword(int userId) throws IDALException.DALException {
+    public IBrugerDTO getBrugerPassword(int userId) {
         IBrugerDTO dto = new BrugerDTO();
         return dto;
     }
 
     @Override
-    public IBrugerDTO getBruger(int brugerId) throws SQLException {
+    public IBrugerDTO getBruger(int brugerId) {
         try {
             Connection connection = Connect.getInstance().createConnection();
 
@@ -73,7 +66,7 @@ public class BrugerDAO implements IBrugerDAO {
     }
 
     @Override
-    public List<BrugerDTO> getBrugerListe() throws SQLException {
+    public List<BrugerDTO> getBrugerListe() {
 
         List<BrugerDTO> brugere = new ArrayList<>();
         BrugerDTO bruger;
@@ -103,11 +96,10 @@ public class BrugerDAO implements IBrugerDAO {
     }
 
     @Override
-    public void retBruger(IBrugerDTO brugerDTO) throws SQLException {
+    public void retBruger(IBrugerDTO brugerDTO) {
         try {
             Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("UPDATE Bruger SET brugerNavn = ?, ini = ?, password = ?, rolle = ? WHERE BrugerID = ?;");
-            System.out.println("JEG TISSER PÅ OST");
             System.out.println(brugerDTO);
             statement.setString(1, brugerDTO.getBrugerNavn());
             statement.setString(2, brugerDTO.getBrugerIni());

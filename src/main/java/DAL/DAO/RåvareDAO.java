@@ -3,19 +3,18 @@ package DAL.DAO;
 import DAL.Connect;
 import DAL.DTO.IRåvareDTO;
 import DAL.DTO.RåvareDTO;
-import DAL.IConnect;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RåvareDAO implements IRåvareDAO, IConnect {
+public class RåvareDAO implements IRåvareDAO {
 
-    public void createRåvare(IRåvareDTO råvareDTO) throws SQLException {
-        createConnection();
-        Connection connection = getConnection();
+    public void createRåvare(IRåvareDTO råvareDTO) {
+
         try {
+            Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("INSERT into Råvare values(?,?,?);");
 
             statement.setInt(1, råvareDTO.getRåvareId());
@@ -24,16 +23,15 @@ public class RåvareDAO implements IRåvareDAO, IConnect {
 
             statement.execute();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        closeConnection();
     }
 
-    public RåvareDTO getRåvare(int ID) throws SQLException {
-        createConnection();
-        Connection connection = getConnection();
+    public RåvareDTO getRåvare(int ID) {
+
         try {
+            Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Råvare WHERE RåvareID = ?;");
 
             statement.setInt(1, ID);
@@ -42,23 +40,23 @@ public class RåvareDAO implements IRåvareDAO, IConnect {
 
             RåvareDTO råvareDTO = null;
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 råvareDTO = new RåvareDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
             }
 
             return råvareDTO;
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return null;
     }
 
-    public void retRåvare(IRåvareDTO råvareDTO) throws SQLException {
-        createConnection();
-        Connection connection = getConnection();
+    public void retRåvare(IRåvareDTO råvareDTO) {
+
         try {
+            Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("UPDATE Råvare SET Råvarenavn = ?, Leverandør = ? WHERE RåvareId = ?;");
 
             statement.setInt(3, råvareDTO.getRåvareId());
@@ -67,39 +65,25 @@ public class RåvareDAO implements IRåvareDAO, IConnect {
 
             statement.executeUpdate();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteRåvare(int ID) throws SQLException {
-        Connection connection = Connect.getInstance().createConnection();
-            try {
+    public void deleteRåvare(int ID) {
+
+        try {
+            Connection connection = Connect.getInstance().createConnection();
             PreparedStatement statement = connection.prepareStatement("DELETE from Råvare WHERE RåvareId  = ?;");
 
             statement.setInt(1, ID);
 
             statement.execute();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-    @Override
-    public Connection createConnection() throws SQLException {
-        Connection connection = Connect.getInstance().createConnection();
-        return connection;
-    }
 
-
-    public Connection getConnection() throws  SQLException{
-        Connection connection = Connect.getInstance().createConnection();
-        return connection;
-    }
-
-    @Override
-    public void closeConnection() throws SQLException {
-
-    }
 }

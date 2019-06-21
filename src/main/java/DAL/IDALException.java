@@ -1,7 +1,7 @@
 package DAL;
 
 public interface IDALException {
-    public class DALException extends Exception {
+     class DALException extends Exception {
         //Til Java serialisering...
         private static final long serialVersionUID = 7355418246336739229L;
 

@@ -1,17 +1,17 @@
 //package DAL.DAO;
 //
+//import DAL.Connect;
 //import DAL.DTO.IIngrediensDTO;
 //import DAL.DTO.IngrediensDTO;
 //
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
+//import java.sql.*;
 //
 //public class IngrediensDAO implements IIngrediensDAO {
 //
-//    public void createIngrediens(Connection connection, IIngrediensDTO ingredientDTO) {
+//    public void createIngrediens(IIngrediensDTO ingredientDTO) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("INSERT into Ingrediens values(?,?,?,?);");
 //
 //            statement.setInt(1, ingredientDTO.getOpskriftID());
@@ -26,8 +26,10 @@
 //        }
 //    }
 //
-//    public IIngrediensDTO getIngrediens(Connection connection, int ID) {
+//    public IIngrediensDTO getIngrediens(int ID) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Ingrediens WHERE IngrediensID = ?;");
 //
 //            statement.setInt(1, ID);
@@ -49,8 +51,10 @@
 //        return null;
 //    }
 //
-//    public void updateIngrediens(Connection connection, IIngrediensDTO ingredientDTO) {
+//    public void updateIngrediens(IIngrediensDTO ingredientDTO) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("UPDATE Ingrediens SET OpskriftID = ?, Ingrediensnavn = ?, IngrediensID = ?, Mængde = ? WHERE IngrediensID = ?;");
 //
 //            statement.setInt(1, ingredientDTO.getOpskriftID());
@@ -66,8 +70,10 @@
 //        }
 //    }
 //
-//    public void deleteIngrediens(Connection connection, int ID) {
+//    public void deleteIngrediens(int ID) {
 //        try {
+//            Connection connection = Connect.getInstance().createConnection();
+//
 //            PreparedStatement statement = connection.prepareStatement("DELETE from Ingrediens WHERE IngrediensID  = ?;");
 //
 //            statement.setInt(1, ID);
