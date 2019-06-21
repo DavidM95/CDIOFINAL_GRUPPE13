@@ -1,9 +1,6 @@
-
 function userLogin() {
-    alert("jeg er her");
     event.preventDefault();
     var data = $('#loginform').serializeJSON();
-    alert(data);
     $.ajax({
         url: '/rest/loginService/',
         method: 'POST',
@@ -14,11 +11,16 @@ function userLogin() {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
-            alert(textStatus);
-            alert(errorThrown);
-
         }
     });
+    window.setTimeout(redirect, 3000);
+    // redirect();
+
+
+}
+
+function redirect() {
+    window.location.replace("/BrugerAdministration/BrugerAdministration.html")
 }
 
 

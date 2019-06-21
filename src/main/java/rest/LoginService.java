@@ -13,26 +13,18 @@ import javax.ws.rs.core.Response;
 
 public class LoginService {
 
-//    @GET
-//    public Response getHelloWorld() {
-//        return Response.ok("hej").build();
-//    }
 
+/**
+ *
+ * Kan bruges til eksamen
+ **/
     @POST
     public Response loginUser(LoginDTO loginDTO) {
 //        BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
 //        brugeradministrationCTRL.LoginChecker(brugerId, brugerPassword);
-        System.out.println(loginDTO.getBrugerId());
-        System.out.println(loginDTO.getBrugerPassword());
-        return Response.ok("Velkommen" + loginDTO.getBrugerId() + " , du er nu logget ind").build();
+
+        return Response.ok("Velkommen," + loginDTO.getBrugerId() + " du er nu logget ind som Admin").build();
 
     }
-    /*}
-
-
-    @GET
-    public String helloworld() {
-        return "Hej verden!";
-    }*/
 }
 

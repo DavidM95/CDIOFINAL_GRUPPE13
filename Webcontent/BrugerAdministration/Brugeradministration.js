@@ -1,8 +1,6 @@
 function opretBruger() {
-    alert("jeg er her");
     event.preventDefault();
     var data = $('#opretbruger').serializeJSON();
-    alert(data);
     $.ajax({
         url: '/rest/UserService/',
         method: 'POST',
@@ -18,28 +16,37 @@ function opretBruger() {
 }
 
 
-function getBruger(test) {
-    alert("Silent dead");
+function getBruger() {
     ID = $('#ID').val();
-    alert(ID);
     event.preventDefault();
-    alert(test);
     $.ajax({
         url: '/rest/UserService/' + ID,
         method: "GET",
         success:
             function (data) {
-                alert(test);
-                if (test === undefined) {
-                    alert("JEG ER HELT SIKKERT IKKE JULEMANDEN");
+
                     $("#usertablebody").empty();
                     $("#usertablebody").append(generateUserHTML(data));
 
-                } else {
-                    alert("JEG ER HELT SIKKERT JULEMANDEN");
+            },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+}
+
+function getRetBruger() {
+    ID = $('#ID').val();
+    event.preventDefault();
+    $.ajax({
+        url: '/rest/UserService/' + ID,
+        method: "GET",
+        success:
+            function (data) {
+
                     $("#usertablebody").empty();
                     $("#usertablebody").append(lavBrugerRetHTML(data));
-                }
+
             },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
@@ -48,24 +55,19 @@ function getBruger(test) {
 }
 
 
+
+
+
+
+
+
+
+
+
 function brugerDerSkalRettes() {
-    alert("sovs");
     var y = 32;
     getBruger(y);
     event.preventDefault();
-
-    /*$.ajax({
-        url: '/rest/UserService/' + ID,
-        method: "GET",
-        success:
-            function (data) {
-                // $("#usertablebody").empty();
-                // $("#usertablebody").append(generateUserHTML(data));
-            },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
-        }
-    });*/
 
 }
 
