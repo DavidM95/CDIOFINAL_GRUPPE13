@@ -25,8 +25,8 @@ function getBruger() {
         success:
             function (data) {
 
-                    $("#usertablebody").empty();
-                    $("#usertablebody").append(generateUserHTML(data));
+                $("#usertablebody").empty();
+                $("#usertablebody").append(generateUserHTML(data));
 
             },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -44,31 +44,14 @@ function getRetBruger() {
         success:
             function (data) {
 
-                    $("#usertablebody").empty();
-                    $("#usertablebody").append(lavBrugerRetHTML(data));
+                $("#usertablebody").empty();
+                $("#usertablebody").append(lavBrugerRetHTML(data));
 
             },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
         }
     });
-}
-
-
-
-
-
-
-
-
-
-
-
-function brugerDerSkalRettes() {
-    var y = 32;
-    getBruger(y);
-    event.preventDefault();
-
 }
 
 
@@ -124,15 +107,13 @@ function generateUserHTML(brugerDTO) {
 
 function setBrugerAktivitet() {
     ID = $('#ID').val();
-    alert("jeg er her");
     event.preventDefault();
-    alert(ID)
     $.ajax({
         url: '/rest/UserService/setBrugerAktivitet/' + ID,
         method: "POST",
         success:
             function () {
-                alert("nu er jeg her")
+                alert("Brugerens aktivitet er nu ændret");
             },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
@@ -142,10 +123,8 @@ function setBrugerAktivitet() {
 
 
 function retBruger() {
-    alert("retBruger");
     event.preventDefault();
     var data = $('#retbrugerform').serializeJSON();
-    alert(data.toString());
     $.ajax({
         url: '/rest/UserService/update/',
         contentType: "application/json", // det
@@ -153,7 +132,7 @@ function retBruger() {
         data: data,
         success:
             function () {
-                alert("ændret");
+                alert("Brugeren er nu opdateret");
             },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);

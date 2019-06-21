@@ -45,7 +45,7 @@ public class UserService {
     public Response retBruger(BrugerDTO brugerDTO) throws IDALException.DALException, SQLException {
         BrugeradministrationCTRL brugeradministrationCTRL = new BrugeradministrationCTRL();
         brugeradministrationCTRL.retBruger(brugerDTO);
-        return Response.ok("hej").build();
+        return Response.ok().build();
     }
 
 
